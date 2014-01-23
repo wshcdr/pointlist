@@ -7,14 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "CGPointEx.h"
+#import "LPtNode.h"
 
-typedef struct LPtNode LPtNode;
-
-struct LPtNode {
-    __unsafe_unretained CGPoint *obj;
-    LPtNode *next;
-    LPtNode *prev;
-};
 
 
 @interface NSPointsList : NSObject{
@@ -27,12 +22,13 @@ struct LPtNode {
 }
 
 - (id)init;                                 // init an empty list
-- (void)pushBack:(CGPoint*)anObject;              // add an object to back of list
-- (int)size;                                // how many objects are stored
+- (void)pushBackex:(CGPointEx*)anObject;              // add an object to back of list
+- (int)sizeex;                                // how many objects are stored
+- (CGPointEx*)getPt:(const int)idx;
 
-@property (readonly) LPtNode *first;
-@property (readonly) LPtNode *last;
+@property (nonatomic, strong) LPtNode *first;
+@property (nonatomic, strong) LPtNode *last;
 
 @end
 
-LPtNode * LPtNodeMake(CGPoint* obj, LPtNode *next, LPtNode *prev);
+LPtNode * LPtNodeMake(CGPointEx* obj, LPtNode *next, LPtNode *prev);

@@ -8,7 +8,19 @@
 
 #import "NSPointsList.h"
 
+LPtNode * LPtNodeMake(CGPointEx* obj, LPtNode *next, LPtNode *prev){
+    LPtNode *n = [[LPtNode alloc] init];
+    
+    n.next = next;
+    n.prev = prev;
+    n.obj = obj;
+    return n;
+};
+
 @implementation NSPointsList
+
+@synthesize first;
+@synthesize last;
 
 - (id)init{
     if ((self = [super init]) == nil) return nil;
@@ -19,7 +31,7 @@
     return self;
 }
 
-- (void)pushBack:(CGPoint*)pt {
+- (void)pushBackex:(CGPointEx*)pt {
     
     if (pt == nil) return;
     
@@ -28,7 +40,7 @@
     if (size == 0) {
         first = last = n;
     } else {
-        last->next = n;
+        last.next = n;
         last = n;
     }
     
@@ -36,14 +48,33 @@
     
 }
 
-- (int)size   { return size; }                             
+- (int)sizeex   { return size; }                             
 
+- (CGPointEx*)getPt:(const int)idx{
+    int tmpidx = idx;
+    
+    
+    if (idx >= size || idx < 0) return nil;
+    
+    LPtNode *node = nil;
+    
+    if (idx > (size / 2)) {
+        // loop from the back
+        int curridx = size - 1;
+        for (node = last; idx < curridx; --curridx) node = node.prev;
+        return node.obj;
+    } else {
+        // loop from the front
+        int curridx = 0;
+        if (idx == 0) {
+            return first.obj;
+        }
+        for (node = first; curridx < idx; ++curridx)
+            node = node.next;
+        return node.obj;
+    }
+    
+    return nil;
+}
 @end
 
-LPtNode * LPtNodeMake(CGPoint* obj, LPtNode *next, LPtNode *prev){
-    LPtNode *n = malloc(sizeof(LPtNode));
-    n->next = next;
-    n->prev = prev;
-    n->obj = obj;
-    return n;
-};
