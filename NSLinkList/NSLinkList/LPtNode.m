@@ -2,7 +2,7 @@
 //  LPtNode.m
 //  mylist003
 //
-//  Created by apple on 14-1-22.
+//  Created by test on 14-1-22.
 //  Copyright (c) 2014年      . All rights reserved.
 //
 

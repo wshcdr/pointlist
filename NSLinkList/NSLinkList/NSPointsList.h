@@ -2,7 +2,7 @@
 //  NSPointsList.h
 //  mylist002
 //
-//  Created by apple on 14-1-21.
+//  Created by test on 14-1-21.
 //  Copyright (c) 2014年      . All rights reserved.
 //
 
